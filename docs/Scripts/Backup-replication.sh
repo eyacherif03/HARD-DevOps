@@ -47,7 +47,7 @@ nodetool getendpoints $KEYSPACE $TABLE "$SNAPSHOT_NAME" > /tmp/replica_ips.txt
 if [ ! -s /tmp/replica_ips.txt ]; then
   echo "No replica returned by Cassandra"
   exit 1
-
+fi
 while read -r IP; do
   HOST=$(host "$IP" | awk '{print substr($NF,1,length($NF)-1)}')
   LOCAL_HOST=$(hostname -f)
